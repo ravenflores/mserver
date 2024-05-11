@@ -51,7 +51,7 @@ exports.default = (0, envalid_1.cleanEnv)(process.env, {
     }),
     SERVER_URL: (0, envalid_1.str)({
         desc: 'Referenece to your server URL. Replace this when your app is hosted',
-        devDefault: 'http://localhost:1337/server',
+        devDefault: 'https://vps-ed22af65.vps.ovh.ca:1337/server',
     }),
     REDIS_CONNECTION_STRING: (0, envalid_1.str)({
         desc: 'Connection string for your redis instance in the format of redis://<host>:<port> or redis://<username>:<password>@<host>:<port>',

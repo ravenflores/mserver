@@ -6,8 +6,21 @@ import { parseServer } from './parseServer';
 // @ts-ignore
 import ParseServer from 'parse-server';
 import http from 'http';
+import https from 'https';
 import ngrok from 'ngrok';
 import { streamsSync } from '@moralisweb3/parse-server';
+import fs from 'fs';
+
+
+
+var key = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/privkey.pem');
+var cert = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/fullchain.pem');
+var options = {
+  key: key,
+  cert: cert
+};
+
+
 
 export const app = express();
 
@@ -18,7 +31,12 @@ Moralis.start({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+  origin: ['https://mater-dei-exam-sytem.netlify.app','http://localhost:19006'],
+  methods: 'GET,POST', // Allow only specific HTTP methods
+};
+
+app.use(cors(corsOptions));
 
 if (config.USE_STREAMS) {
   app.use(
@@ -31,7 +49,7 @@ if (config.USE_STREAMS) {
 
 app.use(`/server`, parseServer.app);
 
-const httpServer = http.createServer(app);
+const httpServer = https.createServer(app);
 httpServer.listen(config.PORT, async () => {
   if (config.USE_STREAMS) {
     const url = await ngrok.connect(config.PORT);
