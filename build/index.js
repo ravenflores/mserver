@@ -11,7 +11,7 @@ const config_1 = __importDefault(require("./config"));
 const parseServer_1 = require("./parseServer");
 // @ts-ignore
 const parse_server_1 = __importDefault(require("parse-server"));
-const https_1 = __importDefault(require("https"));
+const http_1 = __importDefault(require("http"));
 const ngrok_1 = __importDefault(require("ngrok"));
 const parse_server_2 = require("@moralisweb3/parse-server");
 const fs_1 = __importDefault(require("fs"));
@@ -39,7 +39,7 @@ if (config_1.default.USE_STREAMS) {
     }));
 }
 exports.app.use(`/server`, parseServer_1.parseServer.app);
-const httpServer = https_1.default.createServer(exports.app);
+const httpServer = http_1.default.createServer(exports.app);
 httpServer.listen(config_1.default.PORT, async () => {
     if (config_1.default.USE_STREAMS) {
         const url = await ngrok_1.default.connect(config_1.default.PORT);

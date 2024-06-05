@@ -29,7 +29,7 @@ export default cleanEnv(process.env, {
   }),
   SERVER_URL: str({
     desc: 'Referenece to your server URL. Replace this when your app is hosted',
-    devDefault: 'https://vps-ed22af65.vps.ovh.ca:1337/server',
+    devDefault: 'http://localhost:1337/server',
   }),
 
   REDIS_CONNECTION_STRING: str({

@@ -13,12 +13,12 @@ import fs from 'fs';
 
 
 
-var key = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/privkey.pem');
-var cert = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/fullchain.pem');
-var options = {
-  key: key,
-  cert: cert
-};
+// var key = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/privkey.pem');
+// var cert = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/fullchain.pem');
+// var options = {
+//   key: key,
+//   cert: cert
+// };
 
 
 
@@ -49,7 +49,7 @@ if (config.USE_STREAMS) {
 
 app.use(`/server`, parseServer.app);
 
-const httpServer = https.createServer(app);
+const httpServer = http.createServer(app);
 httpServer.listen(config.PORT, async () => {
   if (config.USE_STREAMS) {
     const url = await ngrok.connect(config.PORT);
