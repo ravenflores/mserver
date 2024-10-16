@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const corsOptions = {
-  origin: ['https://mater-dei-exam-sytem.netlify.app','http://localhost:19006'],
+  origin: ['https://mater-dei-exam-sytem.netlify.app'],
   methods: 'GET,POST', // Allow only specific HTTP methods
 };
 
