@@ -15,8 +15,8 @@ const http_1 = __importDefault(require("http"));
 const ngrok_1 = __importDefault(require("ngrok"));
 const parse_server_2 = require("@moralisweb3/parse-server");
 const fs_1 = __importDefault(require("fs"));
-var key = fs_1.default.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/privkey.pem');
-var cert = fs_1.default.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/fullchain.pem');
+var key = fs_1.default.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/privkey.pem');
+var cert = fs_1.default.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/fullchain.pem');
 var options = {
     key: key,
     cert: cert

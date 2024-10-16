@@ -14,8 +14,8 @@ import fs from 'fs';
 
 
 // Load SSL certificate and private key
-const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/vps-ed22af65.vps.ovh.ca/fullchain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/fullchain.pem', 'utf8');
 
 
 
