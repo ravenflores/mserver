@@ -14,8 +14,8 @@ import fs from 'fs';
 
 
 // Load SSL certificate and private key
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/privkey.pem', 'utf8');
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/fullchain.pem', 'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/vps-076307fc.vps.ovh.ca/fullchain.pem', 'utf8');
 
 
 
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const corsOptions = {
-  origin: ['https://mater-dei-exam-sytem.netlify.app','http://localhost:19006'],
+  origin: ['https://mater-dei-exam-sytem.netlify.app'],
   methods: 'GET,POST', // Allow only specific HTTP methods
 };
 
@@ -48,11 +48,10 @@ if (config.USE_STREAMS) {
 
 app.use(`/server`, parseServer.app);
 
-// const httpServer = https.createServer({
-//       key: privateKey,
-//       cert: certificate
-//   },app);
-const httpServer = http.createServer({},app);
+const httpServer = https.createServer({
+      key: privateKey,
+      cert: certificate
+  },app);
 httpServer.listen(config.PORT, async () => {
   if (config.USE_STREAMS) {
     const url = await ngrok.connect(config.PORT);
