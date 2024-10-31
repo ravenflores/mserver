@@ -27,24 +27,25 @@ Moralis.start({
   apiKey: config.MORALIS_API_KEY,
 });
 
+// const corsOptions = {
+//   origin: ['https://mater-dei-exam-sytem.netlify.app'],
+//   methods: 'GET,POST', // Allow only specific HTTP methods
+// };
+
+
+// app.use(cors(corsOptions));
+
+const allowedOrigins = ['https://mater-dei-exam-sytem.netlify.app']
+
+app.use(cors({
+  origin: allowedOrigins,
+}));
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const corsOptions = {
-  origin: ['https://mater-dei-exam-sytem.netlify.app'],
-  methods: 'GET,POST', // Allow only specific HTTP methods
-};
 
-app.use(cors(corsOptions));
-
-if (config.USE_STREAMS) {
-  app.use(
-    streamsSync(parseServer, {
-      apiKey: config.MORALIS_API_KEY,
-      webhookUrl: config.STREAMS_WEBHOOK_URL,
-    }),
-  );
-}
 
 app.use(`/server`, parseServer.app);
 
@@ -54,16 +55,7 @@ app.use(`/server`, parseServer.app);
 //   },app);
 const httpServer = http.createServer({},app);
 httpServer.listen(config.PORT, async () => {
-  if (config.USE_STREAMS) {
-    const url = await ngrok.connect(config.PORT);
-    // eslint-disable-next-line no-console
-    console.log(
-      `Moralis Server is running on port ${config.PORT} and stream webhook url ${url}${config.STREAMS_WEBHOOK_URL}`,
-    );
-  } else {
-    // eslint-disable-next-line no-console
-    console.log(`Moralis Server is running on port ${config.PORT}.`);
-  }
+  console.log(`Moralis Server is running on port ${config.PORT}.`);
 });
 // This will enable the Live Query real-time server
 ParseServer.createLiveQueryServer(httpServer);
