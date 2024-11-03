@@ -35,10 +35,11 @@ Moralis.start({
 
 // app.use(cors(corsOptions));
 
-const allowedOrigins = ['https://mater-dei-exam-sytem.netlify.app']
+const allowedOrigins = ['https://mater-dei-exam-sytem.netlify.app',"http://localhost:19006"]
 
 app.use(cors({
   origin: allowedOrigins,
+  methods: 'GET,POST',
 }));
 
 
